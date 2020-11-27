@@ -1,7 +1,7 @@
 # Mean Shift Viewer
 A simple GUI to explore the capabilities of [pymeanshift](https://github.com/fjean/pymeanshift) library.
 
-![alt text](https://github.com/mauricioprod/MeanShift_Viewer/blob/readme/figs/interface_example.png?raw=true "Logo Title Text 1")
+![alt text](https://github.com/mauricioprod/MeanShift_Viewer/blob/main/figs/interface_example.png?raw=true)
 
 ----
 ## Installation
