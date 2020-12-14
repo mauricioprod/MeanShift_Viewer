@@ -5,12 +5,38 @@ import os
 from PyQt5 import QtGui, QtCore, QtWidgets
 import pymeanshift as pms
 from ui.layout import Ui_MainWindow as MainWindow
+from sklearn.cluster import MeanShift, estimate_bandwidth
+import numpy as np
 
 
 # qt5 imports
 from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog, QGraphicsScene, QGraphicsPixmapItem, QTableWidgetItem
 from PyQt5.QtGui     import QPixmap
 from PyQt5.QtCore    import Qt
+
+
+def colorfi(img_vector, centroids_color):
+    final_image = np.zeros(shape=(img_vector.shape[0], 3))
+
+    for i in range(final_image.shape[0]):
+        final_image[i, :] = centroids_color[img_vector[i], :]
+
+    return final_image.astype('uint8')
+
+
+def meanshift_sklearn(image, bandwidth):
+
+    flat_image = np.reshape(image, [-1, 3])
+
+    ms = MeanShift(bandwidth=bandwidth, bin_seeding=True)
+    ms.fit(flat_image)
+
+    seg_image = colorfi(ms.labels_, ms.cluster_centers_)
+
+    seg_image = np.reshape(seg_image, [image.shape[0], image.shape[1], 3])
+
+    return seg_image, ms.labels_, (ms.labels_.max() + 1)
+
 
 class MeanShiftGUI(QMainWindow, MainWindow):
 
@@ -33,10 +59,12 @@ class MeanShiftGUI(QMainWindow, MainWindow):
 
         self.is_loaded = False
         self.is_processed = False
+        self.is_hsv = False
         self.path = '~'
         self.range   = 10
         self.spatial = 10
         self.density = 100
+        self.bandwidth = 20
 
     @QtCore.pyqtSlot()
     def open_file(self):
@@ -51,10 +79,18 @@ class MeanShiftGUI(QMainWindow, MainWindow):
         self.load_textEdit.setText(self.filename)
 
         # Read image
-        self.image = cv2.imread(self.filename)
+        self.loaded_image = cv2.imread(self.filename)
+
+        self.image = cv2.cvtColor(self.loaded_image, cv2.COLOR_BGR2RGB)
+
 
         # Convert image
-        self.image_in  = QtGui.QImage(self.image.data, self.image.shape[1], self.image.shape[0], QtGui.QImage.Format_RGB888).rgbSwapped()
+        #self.image_in  = QtGui.QImage(self.image.data, self.image.shape[1], self.image.shape[0], QtGui.QImage.Format_RGB888).rgbSwapped()
+        self.image_in = QtGui.QImage(self.image.data, self.image.shape[1], self.image.shape[0],
+                                     QtGui.QImage.Format_RGB888)
+
+
+
 
         # Fix aspect ratio    
         pixmap_in  = QPixmap(self.image_in)
@@ -93,6 +129,21 @@ class MeanShiftGUI(QMainWindow, MainWindow):
             self.apply_pushButton.setEnabled(True)
 
 
+    def filter_image(self):
+
+        if self.is_loaded:
+            self.image_in = cv2.medianBlur(loaded_image,5)
+
+    def rgb_to_hsv(self):
+        if self.is_loaded:
+            self.image = cv2.cvtColor(self.loaded_image, cv2.COLOR_BGR2HSV)
+            self.is_hsv = True
+
+    def hsv_to_rgb(self):
+        if self.is_loaded and self.is_hsv:
+            self.image_seg = cv2.cvtColor(self.image_seg, cv2.COLOR_HSV2RGB)
+
+
     @QtCore.pyqtSlot()
     def update_image(self):
 
@@ -101,14 +152,28 @@ class MeanShiftGUI(QMainWindow, MainWindow):
         self.output_textBrowser.setText('Image being precessed. Please wait.')
         self.apply_pushButton.setEnabled(False)
 
+        self.image = cv2.cvtColor(self.loaded_image, cv2.COLOR_BGR2RGB)
+
+        if self.radioHSV.isChecked():
+            self.rgb_to_hsv()
+
         # Processing
-        (segmented_image, labels_image, number_regions) =  pms.segment(self.image, spatial_radius=self.spatial, 
-                                                                      range_radius=self.range, min_density=self.density)
+
+        if self.checkOnlyColor.isChecked():
+            (segmented_image, labels_image, number_regions) = meanshift_sklearn(self.image, self.range)
+        else:
+            (segmented_image, labels_image, number_regions) =  pms.segment(self.image, spatial_radius=self.spatial, range_radius=self.range, min_density=self.density)
+
+
+
         self.image_seg = segmented_image
+
+        if self.radioHSV.isChecked():
+            self.hsv_to_rgb()
 
 
         # Convert image
-        self.image_out  = QtGui.QImage(self.image_seg.data, self.image.shape[1], self.image.shape[0], QtGui.QImage.Format_RGB888).rgbSwapped()
+        self.image_out  = QtGui.QImage(self.image_seg.data, self.image.shape[1], self.image.shape[0], QtGui.QImage.Format_RGB888)
 
         # Update image
         pixmap_out = QPixmap(self.image_out)
