@@ -202,8 +202,8 @@
    <widget class="QTextBrowser" name="output_textBrowser">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>640</y>
+      <x>30</x>
+      <y>670</y>
       <width>1201</width>
       <height>71</height>
      </rect>
@@ -250,16 +250,56 @@
      </item>
     </layout>
    </widget>
-   <widget class="QWidget" name="verticalLayoutWidget">
+   <widget class="QRadioButton" name="radioRGB">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>610</y>
-      <width>160</width>
-      <height>89</height>
+      <x>60</x>
+      <y>630</y>
+      <width>82</width>
+      <height>17</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" name="verticalLayout"/>
+    <property name="text">
+     <string>RGB</string>
+    </property>
+    <property name="checked">
+     <bool>true</bool>
+    </property>
+    <attribute name="buttonGroup">
+     <string notr="true">buttonGroup</string>
+    </attribute>
+   </widget>
+   <widget class="QRadioButton" name="radioHSV">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>630</y>
+      <width>82</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>HSV</string>
+    </property>
+    <property name="checked">
+     <bool>false</bool>
+    </property>
+    <attribute name="buttonGroup">
+     <string notr="true">buttonGroup</string>
+    </attribute>
+   </widget>
+   <widget class="QCheckBox" name="checkOnlyColor">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>630</y>
+      <width>70</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>OnlyColor</string>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -268,7 +308,7 @@
      <x>0</x>
      <y>0</y>
      <width>1275</width>
-     <height>34</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
@@ -379,4 +419,7 @@
   <slot>update_image()</slot>
   <slot>save_image()</slot>
  </slots>
+ <buttongroups>
+  <buttongroup name="buttonGroup"/>
+ </buttongroups>
 </ui>
