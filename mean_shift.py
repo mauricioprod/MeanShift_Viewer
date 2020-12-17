@@ -200,7 +200,8 @@ class MeanShiftGUI(QMainWindow, MainWindow):
     def save_image(self):
 
         out_filename = '.'.join(self.filename.split('.')[:-1])  + '_r{0:03d}_s{0:03d}_d{0:03d}_out.png'.format(self.range, self.spatial, self.density)
-        cv2.imwrite(out_filename, self.image_seg)
+        self.image_seg_save = cv2.cvtColor(self.image_seg, cv2.COLOR_RGB2BGR)
+        cv2.imwrite(out_filename, self.image_seg_save)
 
         self.output_textBrowser.setText('Segmented image successfully saved.')
 
