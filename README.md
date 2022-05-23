@@ -30,3 +30,10 @@ To use the real-time application:
 2. Define the `Spatial radius`, `Range radius` and `Minimum density` pymeanshift parameters.
 3. Click on `Apply` button to see the result (If you are not satisfied, come back to tunne the pymeanshift parameters and then click on `Apply` to see the change).
 4. Click on `Save` button to save the segmented image (It saves in the same folder of the orginal image).
+
+----
+## [PixelAnnotationTool](https://github.com/abreheret/PixelAnnotationTool)
+We have added [PixelAnnotationTool](https://github.com/abreheret/PixelAnnotationTool) (PAT) as a submodule of this repostitory for image annotation.
+To install PAT, please, follow the instructions [here](https://github.com/abreheret/PixelAnnotationTool/tree/master/scripts_to_build).
+In our application, we are labeling image that may contain oil spill. In this sense, we have prepared a [configuration file](https://github.com/mauricioprod/MeanShift_Viewer/blob/main/oil_detect_classes.json).
+This file should be loaded in `Tool` > `Open config file` in PAT.
