@@ -4,13 +4,16 @@ channels:
   - conda-forge
   - defaults
 dependencies:
+  - cmake=3.19
   - python=3.7
   - opencv=3.4
   - numpy=1.19
   - pathlib=1.0
-  - pip=20.2
+  - pip=22.1
   - pixman=0.40
   - pyqt=5.9
+  - qt=5.9  
   - scikit-learn=0.23.*
   - pip:
     - git+https://github.com/fjean/pymeanshift.git
+
