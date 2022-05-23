@@ -1,0 +1,3 @@
+[submodule "PixelAnnotationTool"]
+	path = PixelAnnotationTool
+	url = https://github.com/abreheret/PixelAnnotationTool.git
