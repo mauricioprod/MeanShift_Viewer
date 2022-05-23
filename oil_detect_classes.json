@@ -1,0 +1,81 @@
+{
+    "labels": {
+        "water": {
+            "categorie": "surface",
+            "color": [
+                51,
+                102,
+                255
+            ],
+            "id": 1,
+            "id_categorie": 1,
+            "name": "water"
+        },
+        "oil_sheen": {
+            "categorie": "surface",
+            "color": [
+                200,
+                200,
+                200
+            ],
+            "id": 2,
+            "id_categorie": 2,
+            "name": "oil_sheen"
+        },
+		"oil_rainbow": {
+            "categorie": "surface",
+            "color": [
+                255,
+                200,
+                200
+            ],
+            "id": 3,
+            "id_categorie": 3,
+            "name": "oil_rainbow"
+        },
+		"oil_metalic": {
+            "categorie": "surface",
+            "color": [
+                100,
+                100,
+                100
+            ],
+            "id": 4,
+            "id_categorie": 4,
+            "name": "oil_metalic"
+        },
+		"oil_emulsified": {
+            "categorie": "surface",
+            "color": [
+                204,
+                0,
+                0
+            ],
+            "id": 5,
+            "id_categorie": 5,
+            "name": "oil_emulsified"
+        },
+        "ship": {
+            "categorie": "vehicle",
+            "color": [
+                255,
+                255,
+                0
+            ],
+            "id": 6,
+            "id_categorie": 6,
+            "name": "ship"
+        },
+        "dont_care": {
+            "categorie": "dont_care",
+            "color": [
+                255,
+                255,
+                255
+            ],
+            "id": 7,
+            "id_categorie": 7,
+            "name": "dont_care"
+        }
+    }
+}
