@@ -20,7 +20,7 @@ the following command `conda env create -n msui -f environment.yml`;
 4. Activate your environment by typing `$ source activate msui`;
 To deactivate the environment type in `$ source deactivate`.
 NOTE: Remember to always activate the environment before running the code;
-5. Launch the software `$ python meanshift.py`.
+5. Launch the software `$ python mean_shift.py`.
 
 ----
 ## Usage
@@ -42,8 +42,9 @@ To install PAT, please, follow the instructions
 ### Install and running PAT
 To use the real-time application:
 1. `$ cd PixelAnnotationTool/scripts_to_build`
-2. install PAT by running `$ ./build_linux.sh`
-3. run the PAT `$ ./build/PixelAnnotationTool`
+2. Install dependencies by running `$ sudo apt install mesa-common-dev` for Ubuntu systems or `$ sudo dnf install mesa-libGL-devel` for Fedora systems.
+3. install PAT by running `$ ./build_linux.sh`
+4. run the PAT `$ ./build/PixelAnnotationTool`
 
 For more details on installing check [here](https://github.com/abreheret/PixelAnnotationTool/tree/master/scripts_to_build).
 
