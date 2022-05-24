@@ -34,6 +34,20 @@ To use the real-time application:
 ----
 ## [PixelAnnotationTool](https://github.com/abreheret/PixelAnnotationTool)
 We have added [PixelAnnotationTool](https://github.com/abreheret/PixelAnnotationTool) (PAT) as a submodule of this repostitory for image annotation.
-To install PAT, please, follow the instructions [here](https://github.com/abreheret/PixelAnnotationTool/tree/master/scripts_to_build).
+
+
+To install PAT, please, follow the instructions
+
+----
+### Install and running PAT
+To use the real-time application:
+1. `$ cd PixelAnnotationTool/scripts_to_build`
+2. install PAT by running `$ ./build_linux.sh`
+3. run the PAT `$ ./build/PixelAnnotationTool`
+
+For more details on installing check [here](https://github.com/abreheret/PixelAnnotationTool/tree/master/scripts_to_build).
+
+----
+
 In our application, we are labeling image that may contain oil spill. In this sense, we have prepared a [configuration file](https://github.com/mauricioprod/MeanShift_Viewer/blob/main/oil_detect_classes.json).
 This file should be loaded in `Tool` > `Open config file` in PAT.
