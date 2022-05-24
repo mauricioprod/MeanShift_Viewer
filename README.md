@@ -14,7 +14,7 @@ A simple GUI to explore the capabilities of [pymeanshift](https://github.com/fje
 ### Guide
 
 1. Open the terminal;
-2. Download and unzip the source [code](https://github.com/mauricioprod/MeanShift_Viewer/archive/main.zip);
+2. Clone the repository by running the following command: `git clone https://github.com/mauricioprod/MeanShift_Viewer.git --recursive`
 3. Create the `msui` virtual environment by running
 the following command `conda env create -n msui -f environment.yml`;
 4. Activate your environment by typing `$ source activate msui`;
